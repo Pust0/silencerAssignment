@@ -12,10 +12,14 @@ const route = Router();
 //request for creating a flashcard
 route.post("/", async (req, res) => {
   try {
-    const flashcard = await createFlashcard();
+    const { flashcardId, name, definition } = req.body;
+    const flashcard = await createFlashcard(flashcardId, name, definition);
     res.status(201).send(flashcard);
   } catch (err) {
     console.log(err);
+    return res.status(400).send({
+      error: "Need flashcardId, name and definition to create post",
+    });
   }
 });
 
@@ -34,9 +38,9 @@ route.get("/:name", async (req, res) => {
 });
 
 //request for updating a flashcard
-route.post("/update", async (req, res) => {
+route.post("/update/:name", async (req, res) => {
   try {
-    const flashcard = await updateFlashcard();
+    const flashcard = await updateFlashcard(req.params.name);
     res.status(201).send(flashcard);
   } catch (err) {
     console.log(err);
@@ -44,9 +48,9 @@ route.post("/update", async (req, res) => {
 });
 
 //request for degrading a flashcard
-route.post("/degrade", async (req, res) => {
+route.post("/degrade/:name", async (req, res) => {
   try {
-    const flashcard = await degradeFlashcard();
+    const flashcard = await degradeFlashcard(req.params.name);
     res.status(201).send(flashcard);
   } catch (err) {
     console.log(err);

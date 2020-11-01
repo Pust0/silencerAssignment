@@ -23,8 +23,8 @@ const FLASHCARD_DEF = {
 const Flashcards = db.define("flashcard", {
   // id: 1 (for Everyday box)
   // id: 2 (for tuesday and thursday box)
-  // id: 3 (for friday box)
-  id: {
+  // id: 3 (for friday box) and so on
+  flashcardId: {
     type: Sequelize.DataTypes.SMALLINT,
     allowNull: false,
   },

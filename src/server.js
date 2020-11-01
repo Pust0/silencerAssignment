@@ -1,9 +1,12 @@
 const express = require('express')
 const {db} = require('./db/models')
+const { flashcardRoute } = require("./routes/index")
 
 const app = express();
 
-
+//for post requests
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 db.sync()
 .then(() => {

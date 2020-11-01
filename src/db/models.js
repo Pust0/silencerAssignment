@@ -22,16 +22,15 @@ const FLASHCARD_DEF = {
 
 //Tables
 const Flashcards = db.define("flashcard", {
-   // id: 1 (for Everyday)
-   // id: 2 (for tuesday and thursday)
-   // id: 3 (for friday)
+   // id: 1 (for Everyday box)
+   // id: 2 (for tuesday and thursday box)
+   // id: 3 (for friday box)
    id:{
       type: Sequelize.DataTypes.SMALLINT,
       allowNull: false
    },
    name: FLASHCARD_NAME,
    definition: FLASHCARD_DEF,
-   response: Sequelize.DataTypes.BOOLEAN
 })
 
 module.exports = {db, Flashcards};

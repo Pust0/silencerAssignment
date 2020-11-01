@@ -22,9 +22,9 @@ async function getFlashcardByName(name) {
 //called when we get the flashcard right and we update the id of the flashcard
 async function updateFlashcard(name) {
   try {
-    console.log(this.flashcardId);
-    const updatedFlashcard = await Flashcards.update(
-      { flashcardId: this.flashcardId + 1 },
+    const updatedFlashcard = await Flashcards.increment(
+      "flashcardId",
+      { by: 1 },
       { where: { name } }
     );
     return updatedFlashcard;

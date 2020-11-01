@@ -1,4 +1,5 @@
 const { Flashcards } = require("../db/models");
+const Sequelize = require("sequelize");
 
 //called when we want to create a flash card
 async function createFlashcard(flashcardId, name, definition) {
@@ -22,9 +23,8 @@ async function getFlashcardByName(name) {
 //called when we get the flashcard right and we update the id of the flashcard
 async function updateFlashcard(name) {
   try {
-    const updatedFlashcard = await Flashcards.increment(
-      "flashcardId",
-      { by: 1 },
+    const updatedFlashcard = await Flashcards.update(
+      { flashcardId: Sequelize.literal("flashcardId + 1") },
       { where: { name } }
     );
     return updatedFlashcard;
